@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+node_modules/
+.image-slots.state.json
+.thumbnail
+*.standalone-src.dc.html

@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/classical-1f376b99-dcef-4c57-91b1-253a5d4633ef/styles.css">
+<script src="_ds/classical-1f376b99-dcef-4c57-91b1-253a5d4633ef/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  :root{
+    --brand:#0B2D57;
+    --brand-700:#081f3d;
+    --brand-900:#040f1f;
+    --gold:#B89B63;
+    --gold-700:#8f7747;
+    --gold-100:#f2ebd8;
+    --gold-50:#faf6ea;
+    --paper:#faf8f3;
+    --paper-2:#f2eee3;
+    --ink:#0e1a2d;
+    --ink-60:#5a6478;
+    --ink-30:#aeb4bf;
+    --hair:rgba(14,26,45,0.14);
+    --wa:#25D366;
+    --wa-700:#1DAE54;
+    /* retune Classical tokens so .btn/.card/.input/.tag/.hr inherit the brand */
+    --color-bg:var(--paper);
+    --color-text:var(--ink);
+    --color-accent:var(--gold);
+    --color-accent-2:var(--brand);
+    --color-divider:var(--hair);
+    --color-surface:var(--paper-2);
+    --font-body:"Instrument Sans", system-ui, sans-serif;
+    --font-heading:"Cormorant Garamond", Georgia, serif;
+  }
+  html,body{margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);color:var(--brand);letter-spacing:-0.01em}
+  h1{font-size:48px;font-weight:500;line-height:1.05}
+  h2{font-size:34px;font-weight:500;line-height:1.1}
+  h3{font-size:22px;font-weight:600;line-height:1.2}
+  h4{font-size:17px;font-weight:600;line-height:1.25}
+  a{color:var(--gold-700);text-underline-offset:3px}
+  a:hover{color:var(--brand)}
+  ::selection{background:color-mix(in srgb, var(--gold) 35%, transparent)}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  input,select,textarea,button{font-family:inherit}
+  /* responsive helpers */
+  .only-m{display:block}
+  .only-d{display:none}
+  @media(min-width:860px){
+    .only-m{display:none}
+    .only-d{display:block}
+    .only-d-flex{display:flex !important}
+    h1{font-size:68px}
+    h2{font-size:44px}
+    .hero-poster-grid{grid-template-columns:1.05fr 1fr !important;gap:48px !important;align-items:stretch}
+    .hero-photo-wrap{min-height:560px !important}
+  }
+  @media(min-width:760px){
+    .fiche-grid{grid-template-columns:1.4fr 1fr !important}
+    .apropos-grid{grid-template-columns:0.9fr 1fr !important;gap:56px !important}
+    .contact-grid{grid-template-columns:1fr 1fr !important}
+    .footer-grid{grid-template-columns:1.3fr 0.8fr 1fr !important}
+    .apropos-stats{grid-template-columns:repeat(3,1fr) !important}
+    .grid-plate{grid-template-columns:1fr 1fr !important;gap:56px !important}
+  }
+  /* grids */
+  .grid-cards{display:grid;grid-template-columns:1fr;gap:28px}
+  @media(min-width:620px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.grid-cards{grid-template-columns:repeat(3,1fr)}}
+  .grid-3{display:grid;grid-template-columns:1fr;gap:28px}
+  @media(min-width:760px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+  .grid-4{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:620px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+  .grid-search{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:760px){.grid-search{grid-template-columns:1.1fr 1fr 1fr auto;align-items:end}}
+  .grid-filters{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(min-width:760px){.grid-filters{grid-template-columns:1.1fr 1fr 1fr 1fr auto}}
+  .hide-m{display:none}
+  @media(min-width:860px){.hide-m{display:inline-flex}}
+  .show-m{display:inline-flex}
+  @media(min-width:860px){.show-m{display:none}}
+  /* reveal animations */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .r{animation:fadeUp .55s ease-out both}
+  .r2{animation:fadeUp .55s .08s ease-out both}
+  .r3{animation:fadeUp .55s .16s ease-out both}
+  .r4{animation:fadeUp .55s .24s ease-out both}
+  /* floating WA */
+  @keyframes waPulse{0%,100%{box-shadow:0 10px 28px rgba(37,211,102,.35),0 0 0 0 rgba(37,211,102,.45)}50%{box-shadow:0 10px 28px rgba(37,211,102,.4),0 0 0 14px rgba(37,211,102,0)}}
+  .wa-fab{animation:waPulse 2.6s ease-in-out infinite}
+  /* nav link */
+  .navlink{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.01em;padding:6px 2px;border-bottom:1px solid transparent;transition:color .15s, border-color .15s}
+  .navlink:hover{color:var(--gold-700)}
+  .navlink.on{color:var(--brand);border-bottom-color:var(--gold)}
+  /* parcelle card */
+  .pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--hair);border-radius:4px;overflow:hidden;transition:transform .2s, box-shadow .2s}
+  .pcard:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(11,45,87,.12)}
+  /* filter chip */
+  .seg-item{padding:8px 14px;font-size:13px;font-weight:500;color:var(--ink-60);cursor:pointer;background:transparent;border:0;border-right:1px solid var(--hair)}
+  .seg-item:last-child{border-right:0}
+  .seg-item.on{color:var(--brand);background:var(--gold-50)}
+  .seg-item:hover:not(.on){background:rgba(14,26,45,0.03)}
+  /* inputs premium */
+  .pinput{width:100%;height:48px;padding:0 14px;font:inherit;font-size:15px;color:var(--ink);background:#fff;border:1px solid var(--hair);border-radius:3px;transition:border-color .15s}
+  .pinput:hover{border-color:color-mix(in srgb,var(--ink) 30%,transparent)}
+  .pinput:focus-visible{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px var(--gold-50)}
+  .plabel{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-60);margin-bottom:6px}
+  /* big button */
+  .cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:3px;font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .15s, color .15s, border-color .15s;border:1px solid transparent}
+  .cta-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .cta-gold:hover{background:var(--gold-700);border-color:var(--gold-700);color:#fff}
+  .cta-outline-navy{color:var(--brand);border-color:var(--brand);background:transparent}
+  .cta-outline-navy:hover{background:var(--brand);color:#fff}
+  .cta-outline-gold{color:var(--gold-700);border-color:var(--gold);background:transparent}
+  .cta-outline-gold:hover{background:var(--gold-50)}
+  .cta-wa{background:var(--wa);color:#fff;border-color:var(--wa)}
+  .cta-wa:hover{background:var(--wa-700);border-color:var(--wa-700);color:#fff}
+  .cta-ghost{color:var(--ink);background:transparent;border-color:var(--hair)}
+  .cta-ghost:hover{background:rgba(14,26,45,0.04)}
+  .cta-sm{height:38px;padding:0 14px;font-size:12px}
+  /* placeholder marker */
+  .acomp{display:inline-block;padding:1px 8px;font-size:10.5px;font-weight:700;letter-spacing:0.1em;background:rgba(184,155,99,0.15);color:var(--gold-700);border-radius:2px;text-transform:uppercase}
+  .demo-badge{position:absolute;top:12px;left:12px;background:var(--brand);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:5px 10px;border-radius:2px;z-index:2}
+  .plate-wrap{background:var(--paper-2);border:1px solid var(--hair);padding:10px;border-radius:2px}
+  /* fiche modal scroll lock */
+  .fiche-scroll{overflow-y:auto;max-height:100vh}
+  .fiche-scroll::-webkit-scrollbar{width:8px}
+  .fiche-scroll::-webkit-scrollbar-thumb{background:var(--hair);border-radius:4px}
+  /* dark CTA band */
+  .cta-band{background:var(--brand);color:#fff;padding:56px 24px;position:relative;overflow:hidden}
+  .cta-band::before{content:"";position:absolute;top:-40%;right:-10%;width:60%;height:180%;background:radial-gradient(ellipse at center, rgba(184,155,99,0.22), transparent 65%);pointer-events:none}
+  .cta-band h2{color:#fff}
+  /* mobile drawer */
+  .drawer{position:fixed;top:0;right:0;width:min(320px,86vw);height:100vh;background:var(--paper);border-left:1px solid var(--hair);padding:72px 24px 24px;z-index:70;transform:translateX(100%);transition:transform .25s ease;box-shadow:-20px 0 60px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:4px}
+  .drawer.open{transform:translateX(0)}
+  .drawer-mask{position:fixed;inset:0;background:rgba(11,45,87,.4);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+  .drawer-mask.on{opacity:1;pointer-events:auto}
+  .drawer a{padding:14px 4px;border-bottom:1px solid var(--hair);font-size:16px;color:var(--ink);text-decoration:none}
+  .drawer a.on{color:var(--brand);font-weight:600}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:var(--paper)">
+
+<!-- ============ NAV ============ -->
+<nav style="position:sticky;top:0;z-index:50;background:rgba(250,248,243,0.92);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--hair)">
+  <div style="max-width:1240px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px">
+    <a href="#/accueil" onClick="{{ goAccueil }}" style="display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--brand)">
+      <span style="font-family:var(--font-heading);font-weight:600;font-size:22px;letter-spacing:-0.01em">Camara</span>
+      <span style="font-family:var(--font-body);font-size:9.5px;letter-spacing:0.18em;color:var(--gold-700);text-transform:uppercase;margin-top:3px">Service Immobilier</span>
+    </a>
+    <div class="only-d" style="margin-left:auto;display:flex;gap:28px;align-items:center">
+      <a href="#/accueil" onClick="{{ goAccueil }}" class="{{ navClassAccueil }}">Accueil</a>
+      <a href="#/parcelles" onClick="{{ goParcelles }}" class="{{ navClassParcelles }}">Parcelles</a>
+      <a href="#/services" onClick="{{ goServices }}" class="{{ navClassServices }}">Services</a>
+      <a href="#/apropos" onClick="{{ goApropos }}" class="{{ navClassApropos }}">À propos</a>
+      <a href="#/contact" onClick="{{ goContact }}" class="{{ navClassContact }}">Contact</a>
+    </div>
+    <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa cta-sm hide-m" style="margin-left:16px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+      WhatsApp
+    </a>
+    <button onClick="{{ toggleMenu }}" aria-label="Menu" class="show-m" style="margin-left:auto;background:transparent;border:1px solid var(--hair);width:42px;height:42px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--brand)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="7" y2="7"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="17" y2="17"></line></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+
+<aside class="drawer {{ drawerCls }}">
+  <button onClick="{{ closeMenu }}" aria-label="Fermer" style="position:absolute;top:16px;right:16px;background:transparent;border:0;cursor:pointer;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;color:var(--brand)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+  </button>
+  <a href="#/accueil" onClick="{{ goAccueil }}" class="{{ drawerClassAccueil }}">Accueil</a>
+  <a href="#/parcelles" onClick="{{ goParcelles }}" class="{{ drawerClassParcelles }}">Parcelles</a>
+  <a href="#/services" onClick="{{ goServices }}" class="{{ drawerClassServices }}">Services</a>
+  <a href="#/apropos" onClick="{{ goApropos }}" class="{{ drawerClassApropos }}">À propos</a>
+  <a href="#/contact" onClick="{{ goContact }}" class="{{ drawerClassContact }}">Contact</a>
+  <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa" style="margin-top:20px">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+    Nous écrire sur WhatsApp
+  </a>
+</aside>
+
+<main style="flex:1">
+
+<!-- ============ ACCUEIL ============ -->
+<sc-if value="{{ isAccueil }}" hint-placeholder-val="{{ true }}">
+<!-- ============ HERO POSTER-STYLE ============ -->
+<section style="background:var(--brand);color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 10%, rgba(184,155,99,0.18), transparent 55%),radial-gradient(ellipse at 90% 90%, rgba(184,155,99,0.1), transparent 60%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:36px 22px 0">
+    <div class="hero-poster-grid" style="display:grid;grid-template-columns:1fr;gap:36px;align-items:stretch">
+      <div class="r" style="padding:12px 0 36px;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:36px">
+          <div style="width:46px;height:46px;background:#fff;border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--brand)">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 10v11h5v-6h4v6h5V10"></path></svg>
+          </div>
+          <div style="display:flex;flex-direction:column;line-height:1">
+            <span style="font-family:var(--font-heading);font-weight:600;font-size:22px;color:#fff;letter-spacing:-0.01em">CAMARA</span>
+            <span style="font-size:10px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-top:5px">Service Immobilier</span>
+          </div>
+        </div>
+        <h1 class="r2" style="font-family:var(--font-heading);font-weight:700;font-size:clamp(44px, 7vw, 82px);line-height:1;letter-spacing:-0.015em;color:#fff;margin:0 0 28px;text-transform:uppercase">
+          Trouvez<br>
+          la <span style="color:var(--gold)">parcelle</span><br>
+          de vos rêves
+        </h1>
+        <div class="r3" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding:14px 20px;background:var(--gold);color:var(--brand-900);font-size:14px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;border-radius:2px;width:fit-content;max-width:100%;margin-bottom:30px">
+          <span>Vente</span>
+          <span style="color:var(--brand-900);opacity:0.4">|</span>
+          <span>Achat</span>
+          <span style="color:var(--brand-900);opacity:0.4">|</span>
+          <span>Location</span>
+          <span style="color:var(--brand-900);opacity:0.4">|</span>
+          <span>Conseil</span>
+        </div>
+        <ul class="r4" style="list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ heroBullets }}" as="b" hint-placeholder-count="4">
+            <li style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500;color:#fff">
+              <span style="flex:none;width:26px;height:26px;background:var(--gold);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--brand-900)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span>{{ b }}</span>
+            </li>
+          </sc-for>
+        </ul>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:auto">
+          <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path></svg>
+            {{ waDisplay }}
+          </a>
+          <a href="#/parcelles" onClick="{{ goParcelles }}" class="cta" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.35)">Voir les biens</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap" style="position:relative;min-height:380px">
+        <div style="position:relative;width:100%;height:100%;min-height:380px;border-radius:3px;overflow:hidden;background:var(--brand-700)">
+          <image-slot id="hero-maison" shape="rect" placeholder="Photo principale — maison, immeuble ou parcelle emblématique" style="width:100%;height:100%"></image-slot>
+        </div>
+        <div style="position:absolute;bottom:18px;right:18px;width:clamp(130px,16vw,180px);aspect-ratio:1;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.35))">
+          <svg viewBox="0 0 200 200" style="position:absolute;inset:0;width:100%;height:100%">
+            <polygon points="100.0,0.0 111.3,28.9 130.9,4.9 132.7,35.8 158.8,19.1 150.9,49.1 180.9,41.2 164.2,67.3 195.1,69.1 171.1,88.7 200.0,100.0 171.1,111.3 195.1,130.9 164.2,132.7 180.9,158.8 150.9,150.9 158.8,180.9 132.7,164.2 130.9,195.1 111.3,171.1 100.0,200.0 88.7,171.1 69.1,195.1 67.3,164.2 41.2,180.9 49.1,150.9 19.1,158.8 35.8,132.7 4.9,130.9 28.9,111.3 0.0,100.0 28.9,88.7 4.9,69.1 35.8,67.3 19.1,41.2 49.1,49.1 41.2,19.1 67.3,35.8 69.1,4.9 88.7,28.9" fill="var(--gold)"></polygon>
+            <circle cx="100" cy="100" r="78" fill="var(--gold-700)"></circle>
+          </svg>
+          <div style="position:relative;z-index:1;padding:10px;display:flex;flex-direction:column;align-items:center;line-height:1.15">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.14em">PARCELLES</div>
+            <div style="font-size:9.5px;font-weight:600;letter-spacing:0.12em;opacity:0.85;margin-top:2px">À PARTIR DE</div>
+            <div style="font-family:var(--font-heading);font-size:clamp(22px,2.6vw,32px);font-weight:700;margin:4px 0;letter-spacing:-0.01em">15 000</div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.14em">GNF / M²</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin:28px -22px 0;padding:18px 26px;background:var(--gold);color:var(--brand-900);display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <div style="display:flex;flex-direction:column;line-height:1.3">
+        <strong style="font-size:14px;letter-spacing:0.12em;text-transform:uppercase">Conakry, Guinée</strong>
+        <span style="font-size:13px;font-weight:500"><span class="acomp" style="background:rgba(11,45,87,0.15);color:var(--brand-900)">À COMPLÉTER</span> &nbsp;Adresse du bureau — Commune, rue, immeuble</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY STRIP ============ -->
+<section style="max-width:1240px;margin:0 auto;padding:48px 22px 12px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:22px">
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Nos réalisations en images</div>
+      <h2 style="margin:0">Un aperçu de nos biens.</h2>
+    </div>
+    <p style="margin:0;max-width:360px;color:var(--ink-60);font-size:14px">Glissez vos photos dans chaque cadre. Elles s'adaptent automatiquement.</p>
+  </div>
+  <div class="grid-4" style="gap:16px">
+    <sc-for list="{{ galleryItems }}" as="g" hint-placeholder-count="4">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:1;background:var(--paper-2);border:1px solid var(--hair);border-radius:3px;overflow:hidden">
+          <image-slot id="{{ g.id }}" shape="rect" placeholder="{{ g.placeholder }}" style="width:100%;height:100%"></image-slot>
+        </div>
+        <figcaption style="font-size:12px;color:var(--ink-60);text-align:center"><span class="acomp">À COMPLÉTER</span> &nbsp;{{ g.caption }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ SEARCH BAR ============ -->
+<section style="max-width:1240px;margin:0 auto;padding:40px 22px 28px">
+  <div class="r4" style="background:#fff;border:1px solid var(--hair);border-radius:4px;padding:20px;box-shadow:0 10px 40px rgba(11,45,87,0.06)">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--brand);margin-bottom:14px">Rechercher un bien</div>
+    <div class="grid-search">
+      <div>
+        <label class="plabel" for="s-quartier">Quartier</label>
+        <select id="s-quartier" class="pinput" value="{{ searchQuartier }}" onChange="{{ updateSearchQuartier }}">
+          <option value="">Tous les quartiers</option>
+          <sc-for list="{{ quartiers }}" as="q" hint-placeholder-count="6">
+            <option value="{{ q }}">{{ q }}</option>
+          </sc-for>
+        </select>
+      </div>
+      <div>
+        <label class="plabel" for="s-prix">Budget max (GNF)</label>
+        <input id="s-prix" type="number" class="pinput" placeholder="ex. 500 000 000" value="{{ searchPrixMax }}" onChange="{{ updateSearchPrix }}">
+      </div>
+      <div>
+        <label class="plabel" for="s-sup">Superficie min (m²)</label>
+        <input id="s-sup" type="number" class="pinput" placeholder="ex. 300" value="{{ searchSuperficieMin }}" onChange="{{ updateSearchSuperficie }}">
+      </div>
+      <button class="cta cta-gold" onClick="{{ applySearch }}" style="height:48px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        Rechercher
+      </button>
+    </div>
+  </div>
+  <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;color:var(--ink-60);font-size:13px">
+    <span style="display:inline-flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="1.5"><path d="m9 12 2 2 4-4"></path><path d="M12 2a10 10 0 1 0 10 10"></path></svg>Documents vérifiés</span>
+    <span style="display:inline-flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="1.5"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>Conakry &amp; intérieur</span>
+    <span style="display:inline-flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="1.5"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>Prix transparents en GNF</span>
+  </div>
+</section>
+
+<!-- hairline -->
+<div style="max-width:1240px;margin:40px auto 0;padding:0 22px"><hr style="border:0;height:1px;background:var(--hair);margin:0"></div>
+
+<!-- Vedettes -->
+<section style="max-width:1240px;margin:0 auto;padding:48px 22px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:28px">
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Nos biens disponibles</div>
+      <h2 style="margin:0">Parcelles &amp; biens vedettes</h2>
+    </div>
+    <a href="#/parcelles" onClick="{{ goParcelles }}" style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--brand);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px">Voir tous les biens →</a>
+  </div>
+  <div class="grid-cards">
+    <sc-for list="{{ parcellesVedettes }}" as="p" hint-placeholder-count="6">
+      <article class="pcard">
+        <div style="position:relative;aspect-ratio:4/3;background:var(--paper-2);overflow:hidden">
+          <sc-if value="{{ p.isDemo }}" hint-placeholder-val="{{ false }}">
+            <span class="demo-badge">Aperçu démo</span>
+          </sc-if>
+          <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
+            <img src="{{ p.photo }}" alt="{{ p.titre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          </sc-if>
+          <sc-if value="{{ p.isPlaceholder }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,var(--paper-2) 0 12px,#eee6d4 12px 24px);color:var(--gold-700)">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-5-5L5 21"></path></svg>
+              <span style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">Photo à venir</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ p.hasImageSlot }}" hint-placeholder-val="{{ false }}">
+            <image-slot id="{{ p.slotId }}" shape="rect" placeholder="Photo principale du bien"></image-slot>
+          </sc-if>
+        </div>
+        <div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; position: relative">
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700)">{{ p.type }} · {{ p.quartier }}</div>
+          <h3 style="margin:0;font-size:21px;color:var(--brand);line-height:1.2">{{ p.titre }}</h3>
+          <div style="font-family:var(--font-heading);font-size:24px;font-weight:600;color:var(--brand);letter-spacing:-0.01em">{{ p.prix }}</div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--ink-60);padding-top:4px;border-top:1px solid var(--hair);margin-top:4px">
+            <span style="display:inline-flex;align-items:center;gap:5px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3z"></path><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>{{ p.superficie }}</span>
+            <span style="color:var(--ink-30)">·</span>
+            <span>Réf. {{ p.ref }}</span>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:14px">
+            <button class="cta cta-outline-navy cta-sm" style="flex:1" onClick="{{ p.open }}">Voir</button>
+            <a href="{{ p.wa }}" target="_blank" rel="noopener" class="cta cta-wa cta-sm" style="flex:1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  <div class="drawer-mask {{ maskCls }}" onClick="{{ closeMenu }}" style="position: absolute; left: 5px; top: 45px"></div></div>
+</section>
+
+<!-- Pourquoi -->
+<section style="background:var(--paper-2);padding:64px 22px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="text-align:center;max-width:620px;margin:0 auto 44px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:10px">Pourquoi nous choisir</div>
+      <h2 style="margin:0 0 14px">Trois engagements, zéro mauvaise surprise.</h2>
+    </div>
+    <div class="grid-3">
+      <div style="text-align:center;padding:0 10px">
+        <div style="width:52px;height:52px;margin:0 auto 18px;background:#fff;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        </div>
+        <h3 style="margin:0 0 10px;color:var(--brand)">Documents vérifiés</h3>
+        <p style="margin:0;color:var(--ink-60);font-size:15px">Chaque bien est contrôlé : titre foncier, acte de vente, plan cadastral. Vous n'achetez jamais à l'aveugle.</p>
+      </div>
+      <div style="text-align:center;padding:0 10px">
+        <div style="width:52px;height:52px;margin:0 auto 18px;background:#fff;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+        </div>
+        <h3 style="margin:0 0 10px;color:var(--brand)">Accompagnement complet</h3>
+        <p style="margin:0;color:var(--ink-60);font-size:15px">De la visite au notaire, nous restons à vos côtés. Vous ne gérez pas seul·e les démarches administratives.</p>
+      </div>
+      <div style="text-align:center;padding:0 10px">
+        <div style="width:52px;height:52px;margin:0 auto 18px;background:#fff;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><path d="M7 7h.01"></path></svg>
+        </div>
+        <h3 style="margin:0 0 10px;color:var(--brand)">Prix transparents</h3>
+        <p style="margin:0;color:var(--ink-60);font-size:15px">Les prix affichés sont les prix pratiqués. Aucun frais caché ni commission dissimulée dans la négociation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plate photo -->
+<section style="max-width:1240px;margin:0 auto;padding:64px 22px">
+  <div style="display:grid;grid-template-columns:1fr;gap:36px;align-items:center">
+    <div style="display:grid;grid-template-columns:1fr;gap:36px;align-items:center" class="grid-plate">
+      <div class="plate-wrap" style="aspect-ratio:4/3">
+        <image-slot id="plate-quartier" shape="rect" placeholder="Vue d'un quartier de Conakry ou d'une parcelle de référence"></image-slot>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:14px">Notre terrain</div>
+        <h2 style="margin:0 0 18px">De la ville aux quartiers émergents de l'intérieur.</h2>
+        <p style="color:var(--ink-60);font-size:16px;margin:0 0 18px">Nous couvrons Conakry (Kaloum, Dixinn, Ratoma, Matoto) et les quartiers en forte demande à l'intérieur du pays. Notre réseau local nous permet d'identifier les parcelles sérieuses avant qu'elles n'atteignent le marché public.</p>
+        <a href="#/apropos" onClick="{{ goApropos }}" style="display:inline-block;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--brand);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px">En savoir plus sur nous →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Témoignages -->
+<section style="max-width:1240px;margin:0 auto;padding:24px 22px 64px">
+  <div style="text-align:center;max-width:620px;margin:0 auto 36px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:10px">Ils nous font confiance</div>
+    <h2 style="margin:0">Témoignages de clients</h2>
+  </div>
+  <div class="grid-3">
+    <sc-for list="{{ temoignages }}" as="t" hint-placeholder-count="3">
+      <blockquote style="margin:0;padding:28px;background:#fff;border:1px solid var(--hair);border-radius:3px;display:flex;flex-direction:column;gap:14px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--gold)" style="opacity:0.8"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"></path></svg>
+        <p style="margin:0;font-family:var(--font-heading);font-size:17px;font-style:italic;color:var(--ink);line-height:1.4">[À COMPLÉTER] — Insérez ici le témoignage de votre client. Deux à trois phrases suffisent.</p>
+        <div style="display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--hair);margin-top:4px">
+          <div style="width:38px;height:38px;border-radius:50%;background:var(--paper-2);border:1px solid var(--hair);display:flex;align-items:center;justify-content:center;color:var(--gold-700);font-family:var(--font-heading);font-size:16px;font-weight:600">{{ t.initial }}</div>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:13px;font-weight:600;color:var(--brand)"><span class="acomp">À COMPLÉTER</span> &nbsp;Nom du client</span>
+            <span style="font-size:11px;color:var(--ink-60)">Quartier · Date</span>
+          </div>
+        </div>
+      </blockquote>
+    </sc-for>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="cta-band">
+  <div style="max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1">
+    <h2 style="margin:0 0 18px">Un projet immobilier en Guinée&nbsp;?</h2>
+    <p style="color:rgba(255,255,255,0.78);font-size:17px;margin:0 0 28px;max-width:580px;margin-left:auto;margin-right:auto">Décrivez-nous votre recherche sur WhatsApp. Nous revenons vers vous avec les biens correspondants sous 24 heures.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+        {{ waDisplay }}
+      </a>
+      <a href="#/parcelles" onClick="{{ goParcelles }}" class="cta" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.3)">Parcourir les biens</a>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- ============ PARCELLES ============ -->
+<sc-if value="{{ isParcelles }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:40px 22px 24px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Nos biens</div>
+  <h1 style="margin:0 0 10px;font-size:40px">Parcelles &amp; biens disponibles</h1>
+  <p style="color:var(--ink-60);font-size:16px;margin:0 0 28px;max-width:600px">Filtrez par quartier, budget ou superficie. Un clic sur WhatsApp ouvre une conversation déjà pré-remplie avec la référence du bien.</p>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:0 22px 20px">
+  <div style="background:#fff;border:1px solid var(--hair);border-radius:4px;padding:18px">
+    <!-- type segmented -->
+    <div style="display:flex;flex-wrap:wrap;gap:4px;border:1px solid var(--hair);border-radius:3px;margin-bottom:16px;width:fit-content;overflow:hidden">
+      <button class="{{ typeClsAll }}" onClick="{{ setTypeAll }}">Tous</button>
+      <button class="{{ typeClsParcelle }}" onClick="{{ setTypeParcelle }}">Parcelles</button>
+      <button class="{{ typeClsMaison }}" onClick="{{ setTypeMaison }}">Maisons</button>
+      <button class="{{ typeClsAppart }}" onClick="{{ setTypeAppart }}">Appartements</button>
+      <button class="{{ typeClsLocal }}" onClick="{{ setTypeLocal }}">Locaux commerciaux</button>
+    </div>
+    <div class="grid-filters">
+      <div>
+        <label class="plabel" for="f-quartier">Quartier</label>
+        <select id="f-quartier" class="pinput" value="{{ filterQuartier }}" onChange="{{ updateFilterQuartier }}">
+          <option value="">Tous les quartiers</option>
+          <sc-for list="{{ quartiers }}" as="q" hint-placeholder-count="6">
+            <option value="{{ q }}">{{ q }}</option>
+          </sc-for>
+        </select>
+      </div>
+      <div>
+        <label class="plabel" for="f-prix-min">Prix min (GNF)</label>
+        <input id="f-prix-min" type="number" class="pinput" placeholder="0" value="{{ filterPrixMin }}" onChange="{{ updateFilterPrixMin }}">
+      </div>
+      <div>
+        <label class="plabel" for="f-prix-max">Prix max (GNF)</label>
+        <input id="f-prix-max" type="number" class="pinput" placeholder="Illimité" value="{{ filterPrixMax }}" onChange="{{ updateFilterPrixMax }}">
+      </div>
+      <div>
+        <label class="plabel" for="f-sup">Superficie min (m²)</label>
+        <input id="f-sup" type="number" class="pinput" placeholder="0" value="{{ filterSuperficieMin }}" onChange="{{ updateFilterSuperficie }}">
+      </div>
+      <button class="cta cta-ghost" onClick="{{ resetFilters }}" style="height:48px">Réinitialiser</button>
+    </div>
+  </div>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin:28px 0 20px">
+    <div style="font-size:14px;color:var(--ink-60)">
+      <strong style="color:var(--brand);font-family:var(--font-heading);font-size:22px;font-weight:600">{{ parcellesCount }}</strong> &nbsp;bien{{ parcellesCountS }} trouvé{{ parcellesCountS }}
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:0 22px 72px">
+  <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+    <div class="grid-cards">
+      <sc-for list="{{ parcellesFiltered }}" as="p" hint-placeholder-count="6">
+        <article class="pcard">
+          <div style="position:relative;aspect-ratio:4/3;background:var(--paper-2);overflow:hidden">
+            <sc-if value="{{ p.isDemo }}" hint-placeholder-val="{{ false }}">
+              <span class="demo-badge">Aperçu démo</span>
+            </sc-if>
+            <sc-if value="{{ p.hasPhoto }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ p.photo }}" alt="{{ p.titre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            </sc-if>
+            <sc-if value="{{ p.isPlaceholder }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,var(--paper-2) 0 12px,#eee6d4 12px 24px);color:var(--gold-700)">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-5-5L5 21"></path></svg>
+                <span style="margin-top:8px;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">Photo à venir</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.hasImageSlot }}" hint-placeholder-val="{{ false }}">
+              <image-slot id="{{ p.slotId }}" shape="rect" placeholder="Photo principale du bien"></image-slot>
+            </sc-if>
+          </div>
+          <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+            <div style="font-size:10.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700)">{{ p.type }} · {{ p.quartier }}</div>
+            <h3 style="margin:0;font-size:21px;color:var(--brand);line-height:1.2">{{ p.titre }}</h3>
+            <div style="font-family:var(--font-heading);font-size:24px;font-weight:600;color:var(--brand);letter-spacing:-0.01em">{{ p.prix }}</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--ink-60);padding-top:4px;border-top:1px solid var(--hair);margin-top:4px">
+              <span style="display:inline-flex;align-items:center;gap:5px">{{ p.superficie }}</span>
+              <span style="color:var(--ink-30)">·</span>
+              <span>Réf. {{ p.ref }}</span>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:14px">
+              <button class="cta cta-outline-navy cta-sm" style="flex:1" onClick="{{ p.open }}">Voir</button>
+              <a href="{{ p.wa }}" target="_blank" rel="noopener" class="cta cta-wa cta-sm" style="flex:1">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+    <div style="text-align:center;padding:72px 22px;background:#fff;border:1px solid var(--hair);border-radius:4px">
+      <div style="width:60px;height:60px;margin:0 auto 20px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+      </div>
+      <h3 style="margin:0 0 10px">Aucun bien ne correspond à ces critères</h3>
+      <p style="color:var(--ink-60);margin:0 0 22px">Élargissez votre recherche ou contactez-nous directement.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="cta cta-outline-navy" onClick="{{ resetFilters }}">Réinitialiser les filtres</button>
+        <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa">Nous contacter sur WhatsApp</a>
+      </div>
+    </div>
+  </sc-if>
+</section>
+</sc-if>
+
+<!-- ============ SERVICES ============ -->
+<sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:48px 22px 72px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Nos services</div>
+  <h1 style="margin:0 0 14px;font-size:40px">Quatre services, un seul interlocuteur.</h1>
+  <p style="color:var(--ink-60);font-size:17px;margin:0 0 48px;max-width:620px">De la recherche d'une parcelle à la gestion de votre patrimoine, nous couvrons l'ensemble de votre parcours immobilier à Conakry et dans l'intérieur du pays.</p>
+  <div class="grid-4">
+    <article style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:28px 24px;display:flex;flex-direction:column;gap:14px">
+      <div style="width:48px;height:48px;background:var(--gold-50);border:1px solid var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5 12 2l9 7.5"></path><path d="M5 9v12h14V9"></path><path d="M10 15h4"></path></svg>
+      </div>
+      <h3 style="margin:0;color:var(--brand)">Achat</h3>
+      <p style="margin:0;color:var(--ink-60);font-size:14.5px;flex:1">Nous recherchons la parcelle, la maison ou l'appartement qui correspond à votre budget et à vos critères, puis sécurisons la transaction jusqu'à la signature.</p>
+    </article>
+    <article style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:28px 24px;display:flex;flex-direction:column;gap:14px">
+      <div style="width:48px;height:48px;background:var(--gold-50);border:1px solid var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><circle cx="7" cy="7" r="1.2" fill="currentColor"></circle></svg>
+      </div>
+      <h3 style="margin:0;color:var(--brand)">Vente</h3>
+      <p style="margin:0;color:var(--ink-60);font-size:14.5px;flex:1">Nous estimons votre bien, le mettons en avant auprès d'acheteurs qualifiés et menons la négociation jusqu'à son terme.</p>
+    </article>
+    <article style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:28px 24px;display:flex;flex-direction:column;gap:14px">
+      <div style="width:48px;height:48px;background:var(--gold-50);border:1px solid var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0-4.4-4-8-9-8s-9 3.6-9 8c0 2.9 1.7 5.5 4.3 7"></path><path d="M15 22c3.9-1.5 6-5 6-9"></path><path d="m14 15 7 7"></path><path d="M18 18h4v4"></path></svg>
+      </div>
+      <h3 style="margin:0;color:var(--brand)">Location</h3>
+      <p style="margin:0;color:var(--ink-60);font-size:14.5px;flex:1">Résidences, commerces, bureaux. Nous proposons des biens vérifiés et accompagnons bailleurs comme locataires pendant toute la durée du bail.</p>
+    </article>
+    <article style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:28px 24px;display:flex;flex-direction:column;gap:14px">
+      <div style="width:48px;height:48px;background:var(--gold-50);border:1px solid var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold-700)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><circle cx="12" cy="12" r="4"></circle></svg>
+      </div>
+      <h3 style="margin:0;color:var(--brand)">Conseil immobilier</h3>
+      <p style="margin:0;color:var(--ink-60);font-size:14.5px;flex:1">Vous hésitez entre investir, construire ou mettre en location ? Nous analysons votre situation et vous recommandons la meilleure décision pour votre patrimoine.</p>
+    </article>
+  </div>
+  <div style="margin-top:40px;background:var(--paper-2);border:1px solid var(--hair);border-radius:3px;padding:32px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <div>
+      <h4 style="margin:0 0 4px">Un service dont vous avez besoin ?</h4>
+      <p style="margin:0;color:var(--ink-60);font-size:14.5px">Décrivez votre demande sur WhatsApp — réponse sous 24 heures.</p>
+    </div>
+    <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+      {{ waDisplay }}
+    </a>
+  </div>
+</section>
+</sc-if>
+
+<!-- ============ À PROPOS ============ -->
+<sc-if value="{{ isApropos }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1100px;margin:0 auto;padding:48px 22px 24px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">À propos</div>
+  <h1 style="margin:0 0 16px;font-size:40px">Camara Service Immobilier</h1>
+  <p style="color:var(--ink-60);font-size:18px;line-height:1.6;max-width:720px;margin:0 0 36px">Un cabinet immobilier basé à Conakry, dédié aux acheteurs, vendeurs et investisseurs qui veulent sécuriser leurs projets en Guinée.</p>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:40px" class="apropos-grid">
+    <div class="plate-wrap" style="aspect-ratio:4/5;max-width:420px">
+      <image-slot id="fondateur" shape="rect" placeholder="Portrait du fondateur ou de l'équipe"></image-slot>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="padding-bottom:24px;border-bottom:1px solid var(--hair)">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Mission</div>
+        <h3 style="margin:0 0 10px">Rendre l'achat immobilier en Guinée plus simple et plus sûr.</h3>
+        <p style="margin:0;color:var(--ink-60);font-size:15.5px">Nous vérifions chaque bien avant de le proposer, et nous expliquons chaque étape — de la visite à la signature — pour que vous n'achetiez jamais à l'aveugle.</p>
+      </div>
+      <div style="padding-bottom:24px;border-bottom:1px solid var(--hair)">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Vision</div>
+        <h3 style="margin:0 0 10px">Devenir la référence du conseil immobilier en Guinée.</h3>
+        <p style="margin:0;color:var(--ink-60);font-size:15.5px">Construire la confiance entre vendeurs, acheteurs et professionnels — c'est ainsi que l'on fait grandir le marché immobilier guinéen.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Zone de couverture</div>
+        <h3 style="margin:0 0 14px">Conakry et quartiers émergents de l'intérieur du pays.</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ quartiers }}" as="q" hint-placeholder-count="8">
+            <span class="tag tag-outline" style="padding:5px 12px;font-size:12px">{{ q }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:56px 0 0;padding:36px 28px;background:var(--brand);border-radius:3px;color:#fff;display:grid;grid-template-columns:1fr;gap:20px" class="apropos-stats">
+    <div>
+      <div style="font-family:var(--font-heading);font-size:36px;font-weight:600;color:var(--gold)"><span class="acomp" style="background:rgba(184,155,99,0.25);color:var(--gold)">À COMPLÉTER</span></div>
+      <div style="color:rgba(255,255,255,0.72);font-size:13px;margin-top:4px">Années d'expérience</div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-heading);font-size:36px;font-weight:600;color:var(--gold)"><span class="acomp" style="background:rgba(184,155,99,0.25);color:var(--gold)">À COMPLÉTER</span></div>
+      <div style="color:rgba(255,255,255,0.72);font-size:13px;margin-top:4px">Transactions réalisées</div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-heading);font-size:36px;font-weight:600;color:var(--gold)"><span class="acomp" style="background:rgba(184,155,99,0.25);color:var(--gold)">À COMPLÉTER</span></div>
+      <div style="color:rgba(255,255,255,0.72);font-size:13px;margin-top:4px">Quartiers couverts</div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- ============ CONTACT ============ -->
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1100px;margin:0 auto;padding:48px 22px 72px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Contact</div>
+  <h1 style="margin:0 0 16px;font-size:40px">Parlons de votre projet.</h1>
+  <p style="color:var(--ink-60);font-size:17px;max-width:620px;margin:0 0 36px">Le plus rapide pour nous joindre reste WhatsApp. Nous répondons personnellement à chaque demande.</p>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:28px" class="contact-grid">
+    <!-- WhatsApp card -->
+    <div style="background:var(--brand);color:#fff;padding:36px 28px;border-radius:3px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-30%;right:-20%;width:60%;height:160%;background:radial-gradient(ellipse at center, rgba(184,155,99,0.3), transparent 70%);pointer-events:none"></div>
+      <div style="position:relative">
+        <div style="width:52px;height:52px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:20px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+        </div>
+        <h3 style="color:#fff;margin:0 0 10px;font-size:22px">WhatsApp — voie prioritaire</h3>
+        <p style="color:rgba(255,255,255,0.78);margin:0 0 24px;font-size:15px">Posez votre question, décrivez le bien recherché ou envoyez-nous une photo. Nous reprenons contact dans la journée.</p>
+        <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="cta cta-wa" style="width:100%">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+          {{ waDisplay }}
+        </a>
+        <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.14);display:flex;flex-direction:column;gap:12px;font-size:13.5px">
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="flex:none;margin-top:1px"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div><strong style="color:#fff">Adresse</strong><br><span style="color:rgba(255,255,255,0.72)"><span class="acomp" style="background:rgba(184,155,99,0.25);color:var(--gold)">À COMPLÉTER</span> — adresse de bureau à Conakry</span></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div><strong style="color:#fff">Horaires</strong><br><span style="color:rgba(255,255,255,0.72)">Lun–Sam : 09h–19h · Dim : sur rendez-vous</span></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="flex:none;margin-top:1px"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path></svg>
+            <div><strong style="color:#fff">Zone d'intervention</strong><br><span style="color:rgba(255,255,255,0.72)">Conakry (toutes communes) et intérieur du pays</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form card -->
+    <div style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:32px 28px">
+      <h3 style="margin:0 0 6px">Ou laissez-nous un message</h3>
+      <p style="color:var(--ink-60);margin:0 0 24px;font-size:14px">Nous vous rappelons dans les 24 heures.</p>
+      <form onSubmit="{{ submitContact }}" style="display:flex;flex-direction:column;gap:16px">
+        <div>
+          <label class="plabel" for="c-nom">Nom complet</label>
+          <input id="c-nom" required="" class="pinput" placeholder="Votre nom" value="{{ contactNom }}" onChange="{{ updateContactNom }}">
+        </div>
+        <div>
+          <label class="plabel" for="c-tel">Téléphone</label>
+          <input id="c-tel" required="" type="tel" class="pinput" placeholder="+224 ..." value="{{ contactTel }}" onChange="{{ updateContactTel }}">
+        </div>
+        <div>
+          <label class="plabel" for="c-msg">Message</label>
+          <textarea id="c-msg" required="" class="pinput" style="min-height:120px;padding:12px 14px;resize:vertical" placeholder="Décrivez votre projet, le quartier ou le type de bien recherché..." value="{{ contactMsg }}" onChange="{{ updateContactMsg }}"></textarea>
+        </div>
+        <button type="submit" class="cta cta-outline-navy" style="width:100%">Envoyer via WhatsApp</button>
+        <p style="margin:0;font-size:12px;color:var(--ink-60);text-align:center">Le formulaire ouvre WhatsApp avec votre message pré-rempli.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:var(--brand-900);color:rgba(255,255,255,0.72);padding:48px 22px 24px;margin-top:auto">
+  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:36px" class="footer-grid">
+    <div>
+      <div style="display:flex;flex-direction:column;line-height:1;color:#fff;margin-bottom:14px">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:24px">Camara</span>
+        <span style="font-size:10px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-top:4px">Service Immobilier</span>
+      </div>
+      <p style="margin:0;font-size:13.5px;line-height:1.6;max-width:280px">Vente, achat, location et conseil immobilier à Conakry et à l'intérieur de la Guinée.</p>
+    </div>
+    <div>
+      <div style="color:#fff;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:14px">Navigation</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+        <a href="#/accueil" onClick="{{ goAccueil }}" style="color:rgba(255,255,255,0.72);text-decoration:none">Accueil</a>
+        <a href="#/parcelles" onClick="{{ goParcelles }}" style="color:rgba(255,255,255,0.72);text-decoration:none">Parcelles &amp; biens</a>
+        <a href="#/services" onClick="{{ goServices }}" style="color:rgba(255,255,255,0.72);text-decoration:none">Services</a>
+        <a href="#/apropos" onClick="{{ goApropos }}" style="color:rgba(255,255,255,0.72);text-decoration:none">À propos</a>
+        <a href="#/contact" onClick="{{ goContact }}" style="color:rgba(255,255,255,0.72);text-decoration:none">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div style="color:#fff;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:14px">Contact</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+        <a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-weight:600">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--wa)"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+          {{ waDisplay }}
+        </a>
+        <span style="color:rgba(255,255,255,0.72)">Lun–Sam · 09h–19h</span>
+        <span style="color:rgba(255,255,255,0.72)">Conakry, Guinée</span>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.12);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.55)">
+    <div>© 2026 Camara Service Immobilier — Tous droits réservés.</div>
+    <div>Site conçu pour mobile · Prix affichés en GNF</div>
+  </div>
+</footer>
+
+</div>
+
+<!-- ============ FLOATING WA FAB ============ -->
+<a href="{{ waUrlGeneric }}" target="_blank" rel="noopener" class="wa-fab" aria-label="Ouvrir WhatsApp" style="position:fixed;bottom:22px;right:22px;z-index:55;width:60px;height:60px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+</a>
+
+<!-- ============ FICHE MODAL ============ -->
+<sc-if value="{{ ficheOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeFiche }}" style="position:fixed;inset:0;z-index:80;background:rgba(11,45,87,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;padding:0;overflow-y:auto">
+  <div onClick="{{ stopProp }}" class="fiche-scroll" style="background:var(--paper);width:100%;max-width:960px;min-height:100vh;position:relative;animation:fadeUp .3s ease-out">
+    <button onClick="{{ closeFiche }}" aria-label="Fermer" style="position:sticky;top:16px;float:right;margin-right:16px;z-index:2;background:#fff;border:1px solid var(--hair);width:44px;height:44px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--brand);box-shadow:0 4px 12px rgba(0,0,0,0.1)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </button>
+    <!-- Gallery -->
+    <div style="aspect-ratio:16/10;background:var(--paper-2);position:relative;overflow:hidden">
+      <sc-if value="{{ ficheHasPhoto }}" hint-placeholder-val="{{ false }}">
+        <img src="{{ fichePhoto }}" alt="{{ ficheTitre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      </sc-if>
+      <sc-if value="{{ ficheHasSlot }}" hint-placeholder-val="{{ false }}">
+        <image-slot id="{{ ficheSlotId }}" shape="rect" placeholder="Photo principale du bien"></image-slot>
+      </sc-if>
+      <sc-if value="{{ ficheIsPlaceholder }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,var(--paper-2) 0 14px,#eee6d4 14px 28px);color:var(--gold-700)">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-5-5L5 21"></path></svg>
+          <span style="margin-top:10px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">Photos à venir</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ ficheIsDemo }}" hint-placeholder-val="{{ false }}">
+        <span class="demo-badge" style="top:20px;left:20px">Aperçu démo</span>
+      </sc-if>
+    </div>
+    <!-- Thumbs row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:2px 0;background:var(--paper-2)">
+      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Photo</div>
+      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Photo</div>
+      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Photo</div>
+      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">+ photos</div>
+    </div>
+
+    <div style="padding:36px 28px 100px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:10px">{{ ficheType }} · Réf. {{ ficheRef }}</div>
+      <h1 style="margin:0 0 14px;font-size:34px">{{ ficheTitre }}</h1>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:28px">
+        <span class="tag tag-outline" style="padding:5px 12px;font-size:12px">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          {{ ficheQuartier }}, {{ ficheVille }}
+        </span>
+        <span class="tag tag-neutral" style="padding:5px 12px;font-size:12px">{{ ficheSuperficie }}</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:28px" class="fiche-grid">
+        <div>
+          <!-- Prix -->
+          <div style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:24px;margin-bottom:24px">
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700);margin-bottom:8px">Prix de vente</div>
+            <div style="font-family:var(--font-heading);font-size:38px;font-weight:600;color:var(--brand);letter-spacing:-0.01em">{{ fichePrix }}</div>
+          </div>
+          <!-- Description -->
+          <h3 style="margin:0 0 12px">Description</h3>
+          <p style="color:var(--ink-60);font-size:15.5px;line-height:1.65;margin:0 0 28px">{{ ficheDescription }}</p>
+          <!-- Documents -->
+          <h3 style="margin:0 0 12px">Documents disponibles</h3>
+          <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ ficheDocuments }}" as="doc" hint-placeholder-count="3">
+              <li style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;border:1px solid var(--hair);border-radius:3px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg>
+                <span style="font-size:14px">{{ doc }}</span>
+              </li>
+            </sc-for>
+          </ul>
+          <!-- Localisation -->
+          <h3 style="margin:0 0 12px">Localisation</h3>
+          <div style="padding:20px;background:var(--paper-2);border:1px solid var(--hair);border-radius:3px;display:flex;align-items:flex-start;gap:14px">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-700)" stroke-width="1.5" style="flex:none"><path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div>
+              <div style="font-family:var(--font-heading);font-size:19px;font-weight:600;color:var(--brand)">{{ ficheQuartier }}, {{ ficheVille }}</div>
+              <div style="color:var(--ink-60);font-size:13.5px;margin-top:4px">Localisation précise communiquée à la demande. <span class="acomp">À COMPLÉTER</span>&nbsp;coordonnées GPS si disponibles.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTAs sidebar -->
+        <aside style="display:flex;flex-direction:column;gap:12px;position:sticky;top:20px;align-self:start">
+          <div style="background:#fff;border:1px solid var(--hair);border-radius:3px;padding:20px">
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-700);margin-bottom:12px">Intéressé par ce bien ?</div>
+            <a href="{{ waUrlFiche }}" target="_blank" rel="noopener" class="cta cta-wa" style="width:100%;margin-bottom:10px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+              Contacter sur WhatsApp
+            </a>
+            <a href="{{ waUrlVisite }}" target="_blank" rel="noopener" class="cta cta-outline-navy" style="width:100%">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Demander une visite
+            </a>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-60);line-height:1.5">
+              Message pré-rempli avec la <strong style="color:var(--brand)">référence {{ ficheRef }}</strong>. Modifiable avant envoi.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.PARCELLES = [
+      {
+        ref: 'CSI-002',
+        type: 'Maison inachevée',
+        titre: 'Maison inachevée 500 m² à Yorogueya, Dubréka',
+        quartier: 'Yorogueya',
+        ville: 'Dubréka',
+        prix: 320000000,
+        devise: 'GNF',
+        superficie: 500,
+        description: "Maison en construction sur un terrain de 500 m² à Yorogueya, Dubréka. Gros œuvre à moitié terminé, fosse septique entièrement achevée. Bien à finaliser selon vos besoins et votre budget. Opportunité intéressante pour investisseurs ou particuliers souhaitant personnaliser leur maison.",
+        documents: ['Certificat à titre foncier', 'Plan', 'Acte de donation'],
+        photo: 'uploads/csi-002_photo-01.png',
+        vedette: true,
+      },
+      {
+        ref: 'CSI-003',
+        type: '2 parcelles collées',
+        titre: '2 parcelles collées de 1000 m² à Dapomba, Conakry',
+        quartier: 'Dapomba',
+        ville: 'Conakry',
+        prix: 1500000000,
+        devise: 'GNF',
+        superficie: 1000,
+        description: "Deux parcelles collées formant un terrain de 1000 m² d'un seul tenant à Dapomba, Conakry. Grand espace idéal pour un projet résidentiel, familial ou commercial. Zone habitée à 98%, environnement vivant et sécurisé. Accès à l'électricité du quartier.",
+        documents: ['Plan'],
+        photo: 'uploads/csi-003_photo-01.jpg',
+        vedette: true,
+      },
+      {
+        ref: 'CSI-004',
+        type: 'Parcelle vide',
+        titre: 'Parcelle vide 500 m² à Yorogueya, Dubréka',
+        quartier: 'Yorogueya',
+        ville: 'Dubréka',
+        prix: 45000000,
+        devise: 'GNF',
+        superficie: 500,
+        description: "Parcelle vide de 500 m² à Yorogueya, Dubréka. Terrain situé en zone habitée et électrifiée, parfait pour un projet de construction. Environnement de voisinage établi, accès aux commodités du quartier.",
+        documents: ['Acte de donation', 'Plan'],
+        photo: 'uploads/csi-004_photo-01.png',
+        vedette: true,
+      },
+      {
+        ref: 'CSI-005',
+        type: 'Parcelle vide',
+        titre: 'Parcelle vide 500 m² à Namana, Siguiri',
+        quartier: 'Namana',
+        ville: 'Siguiri',
+        prix: 150000000,
+        devise: 'GNF',
+        superficie: 500,
+        description: "Parcelle vide de 500 m² à Namana, Siguiri. Terrain situé en zone habitée et électrifiée, idéal pour un projet de construction résidentielle. Localisation stratégique dans l'intérieur du pays, bien desservie.",
+        documents: ['Acte de donation', 'Plan'],
+        photo: 'uploads/csi-005_photo-01.png',
+        vedette: true,
+      },
+      {
+        ref: 'CSI-006',
+        type: 'Parcelle vide',
+        titre: 'Parcelle vide 500 m² à Lanfiabougou, Siguiri',
+        quartier: 'Lanfiabougou',
+        ville: 'Siguiri',
+        prix: 150000000,
+        devise: 'GNF',
+        superficie: 500,
+        description: "Parcelle vide de 500 m² à Lanfiabougou, Siguiri, en direction de l'école Obama, à proximité de l'usine Woppa. Terrain situé en zone habitée et électrifiée, bien desservi et facile d'accès. Localisation repérable grâce à des points de repère connus.",
+        documents: ['Acte de donation', 'Plan'],
+        photo: 'uploads/csi-006_photo-01.png',
+        vedette: true,
+      },
+    ];
+    this.QUARTIERS = ['Kaloum', 'Dixinn', 'Ratoma', 'Matoto', 'Kipé', 'Taouyah', 'Nongo', 'Lambanyi', 'Kagbelen', 'Sonfonia', 'Camayenne', 'Dapomba', 'Yorogueya', 'Namana', 'Lanfiabougou', 'Intérieur du pays'];
+    this.WA_NUMBER = '224622677617';
+    this.WA_DISPLAY = '+224 622 67 76 17';
+  }
+
+  state = {
+    view: 'accueil',
+    ficheRef: null,
+    menuOpen: false,
+    searchQuartier: '',
+    searchPrixMax: '',
+    searchSuperficieMin: '',
+    filterQuartier: '',
+    filterPrixMin: '',
+    filterPrixMax: '',
+    filterSuperficieMin: '',
+    filterType: 'all',
+    contactNom: '',
+    contactTel: '',
+    contactMsg: '',
+  };
+
+  componentDidMount() {
+    this._onHash = () => this.readHash();
+    window.addEventListener('hashchange', this._onHash);
+    this.readHash();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this._onHash);
+    try { document.body.style.overflow = ''; } catch(e) {}
+  }
+
+  readHash() {
+    const h = (window.location.hash || '').replace(/^#\/?/, '').split('/')[0];
+    const valid = ['accueil', 'parcelles', 'services', 'apropos', 'contact'];
+    const view = valid.includes(h) ? h : 'accueil';
+    this.setState({ view, menuOpen: false, ficheRef: null });
+    try { document.body.style.overflow = ''; } catch(e) {}
+    try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch(e) { window.scrollTo(0, 0); }
+  }
+
+  nav(view) {
+    if (window.location.hash === '#/' + view) {
+      this.readHash();
+    } else {
+      window.location.hash = '#/' + view;
+    }
+  }
+
+  openFiche(ref) {
+    this.setState({ ficheRef: ref });
+    try { document.body.style.overflow = 'hidden'; } catch(e) {}
+  }
+
+  closeFiche() {
+    this.setState({ ficheRef: null });
+    try { document.body.style.overflow = ''; } catch(e) {}
+  }
+
+  applySearch() {
+    this.setState({
+      filterQuartier: this.state.searchQuartier,
+      filterPrixMax: this.state.searchPrixMax,
+      filterSuperficieMin: this.state.searchSuperficieMin,
+      filterPrixMin: '',
+      filterType: 'all',
+    }, () => this.nav('parcelles'));
+  }
+
+  resetFilters() {
+    this.setState({
+      filterQuartier: '', filterPrixMin: '', filterPrixMax: '',
+      filterSuperficieMin: '', filterType: 'all',
+    });
+  }
+
+  formatPrix(p) {
+    if (p.prix == null) return '[À COMPLÉTER]';
+    return p.prix.toLocaleString('fr-FR').replace(/\u202f/g, ' ').replace(/,/g, ' ') + ' ' + (p.devise || 'GNF');
+  }
+
+  formatSup(p) {
+    if (p.superficie == null) return '[À COMPLÉTER]';
+    return p.superficie + ' m²';
+  }
+
+  waUrl(message) {
+    return 'https://wa.me/' + this.WA_NUMBER + '?text=' + encodeURIComponent(message);
+  }
+
+  waBien(p) {
+    const t = p.titre && !p.isPlaceholder ? p.titre : 'ce bien';
+    const q = p.quartier && !p.isPlaceholder ? p.quartier : '';
+    const msg = "Bonjour, je suis intéressé(e) par le bien réf. " + p.ref +
+      (q ? " (" + t + ", " + q + ")" : " (" + t + ")") +
+      ". Pouvez-vous m'en dire plus ?";
+    return this.waUrl(msg);
+  }
+
+  waVisite(p) {
+    const t = p.titre && !p.isPlaceholder ? p.titre : 'ce bien';
+    const q = p.quartier && !p.isPlaceholder ? p.quartier : '';
+    const msg = "Bonjour, je souhaite organiser une visite du bien réf. " + p.ref +
+      (q ? " (" + t + ", " + q + ")" : " (" + t + ")") +
+      ". Quelles sont vos disponibilités ?";
+    return this.waUrl(msg);
+  }
+
+  waGeneric() {
+    return this.waUrl("Bonjour, je vous écris depuis votre site Camara Service Immobilier.");
+  }
+
+  formatOne(p) {
+    const self = this;
+    return Object.assign({}, p, {
+      prix: this.formatPrix(p),
+      superficie: this.formatSup(p),
+      wa: this.waBien(p),
+      waVisite: this.waVisite(p),
+      hasPhoto: !!p.photo,
+      hasImageSlot: !p.isPlaceholder && !p.photo,
+      slotId: 'photo-' + p.ref,
+      open: function() { self.openFiche(p.ref); },
+    });
+  }
+
+  filtered() {
+    const s = this.state;
+    return this.PARCELLES.filter(p => {
+      if (s.filterType !== 'all' && p.type.toLowerCase() !== s.filterType) return false;
+      if (s.filterQuartier && !((p.quartier || '').toLowerCase().includes(s.filterQuartier.toLowerCase()))) return false;
+      if (s.filterPrixMin !== '' && (p.prix == null || p.prix < parseFloat(s.filterPrixMin))) return false;
+      if (s.filterPrixMax !== '' && (p.prix == null || p.prix > parseFloat(s.filterPrixMax))) return false;
+      if (s.filterSuperficieMin !== '' && (p.superficie == null || p.superficie < parseFloat(s.filterSuperficieMin))) return false;
+      return true;
+    });
+  }
+
+  submitContact(e) {
+    e.preventDefault();
+    const { contactNom, contactTel, contactMsg } = this.state;
+    const msg = "Bonjour, je vous contacte depuis votre site.\n\nNom : " + contactNom +
+      "\nTéléphone : " + contactTel + "\n\nMessage :\n" + contactMsg;
+    window.open(this.waUrl(msg), '_blank', 'noopener');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const view = s.view;
+    const ficheBien = s.ficheRef ? this.PARCELLES.find(p => p.ref === s.ficheRef) : null;
+    const filtered = this.filtered();
+    const navCls = (v) => view === v ? 'navlink on' : 'navlink';
+    const drawerCls = (v) => view === v ? 'on' : '';
+    const typeCls = (t) => s.filterType === t ? 'seg-item on' : 'seg-item';
+
+    return {
+      view,
+      isAccueil: view === 'accueil',
+      isParcelles: view === 'parcelles',
+      isServices: view === 'services',
+      isApropos: view === 'apropos',
+      isContact: view === 'contact',
+      menuOpen: s.menuOpen,
+      drawerCls: s.menuOpen ? 'open' : '',
+      maskCls: s.menuOpen ? 'on' : '',
+      quartiers: this.QUARTIERS,
+      temoignages: [{initial:'A'},{initial:'B'},{initial:'C'}],
+      heroBullets: [
+        'Parcelles vérifiées',
+        'Documents en règle',
+        'Maisons & appartements modernes',
+        'Prix transparents en GNF',
+      ],
+      galleryItems: [
+        { id: 'gal-1', placeholder: 'Vue extérieure d\u2019une maison', caption: 'Villa — légende' },
+        { id: 'gal-2', placeholder: 'Façade d\u2019immeuble', caption: 'Immeuble — légende' },
+        { id: 'gal-3', placeholder: 'Parcelle vue aérienne', caption: 'Parcelle — légende' },
+        { id: 'gal-4', placeholder: 'Intérieur ou terrasse', caption: 'Intérieur — légende' },
+      ],
+      parcellesVedettes: this.PARCELLES.filter(p => p.vedette).map(p => this.formatOne(p)),
+      parcellesFiltered: filtered.map(p => this.formatOne(p)),
+      parcellesCount: filtered.length,
+      parcellesCountS: filtered.length > 1 ? 's' : '',
+      hasResults: filtered.length > 0,
+      noResults: filtered.length === 0,
+
+      navClassAccueil: navCls('accueil'),
+      navClassParcelles: navCls('parcelles'),
+      navClassServices: navCls('services'),
+      navClassApropos: navCls('apropos'),
+      navClassContact: navCls('contact'),
+      drawerClassAccueil: drawerCls('accueil'),
+      drawerClassParcelles: drawerCls('parcelles'),
+      drawerClassServices: drawerCls('services'),
+      drawerClassApropos: drawerCls('apropos'),
+      drawerClassContact: drawerCls('contact'),
+
+      typeClsAll: typeCls('all'),
+      typeClsParcelle: typeCls('parcelle'),
+      typeClsMaison: typeCls('maison'),
+      typeClsAppart: typeCls('appartement'),
+      typeClsLocal: typeCls('local commercial'),
+
+      searchQuartier: s.searchQuartier,
+      searchPrixMax: s.searchPrixMax,
+      searchSuperficieMin: s.searchSuperficieMin,
+      filterQuartier: s.filterQuartier,
+      filterPrixMin: s.filterPrixMin,
+      filterPrixMax: s.filterPrixMax,
+      filterSuperficieMin: s.filterSuperficieMin,
+      contactNom: s.contactNom,
+      contactTel: s.contactTel,
+      contactMsg: s.contactMsg,
+
+      waNumber: this.WA_NUMBER,
+      waDisplay: this.WA_DISPLAY,
+      waUrlGeneric: this.waGeneric(),
+
+      ficheOpen: !!ficheBien,
+      ficheRef: ficheBien ? ficheBien.ref : '',
+      ficheType: ficheBien ? ficheBien.type : '',
+      ficheTitre: ficheBien ? ficheBien.titre : '',
+      ficheQuartier: ficheBien ? ficheBien.quartier : '',
+      ficheVille: ficheBien ? ficheBien.ville : '',
+      fichePrix: ficheBien ? this.formatPrix(ficheBien) : '',
+      ficheSuperficie: ficheBien ? this.formatSup(ficheBien) : '',
+      ficheDescription: ficheBien ? ficheBien.description : '',
+      ficheDocuments: ficheBien && ficheBien.documents && ficheBien.documents.length ? ficheBien.documents : ['[À COMPLÉTER] — Titre foncier', '[À COMPLÉTER] — Plan cadastral', '[À COMPLÉTER] — Autre document'],
+      ficheIsDemo: ficheBien ? !!ficheBien.isDemo : false,
+      ficheIsPlaceholder: ficheBien ? !!ficheBien.isPlaceholder : false,
+      ficheHasPhoto: ficheBien ? !!ficheBien.photo : false,
+      fichePhoto: ficheBien && ficheBien.photo ? ficheBien.photo : '',
+      ficheHasSlot: ficheBien ? (!ficheBien.isPlaceholder && !ficheBien.photo) : false,
+      ficheSlotId: ficheBien ? 'fiche-' + ficheBien.ref : '',
+      waUrlFiche: ficheBien ? this.waBien(ficheBien) : '#',
+      waUrlVisite: ficheBien ? this.waVisite(ficheBien) : '#',
+
+      goAccueil: (e) => { if(e) e.preventDefault(); this.nav('accueil'); },
+      goParcelles: (e) => { if(e) e.preventDefault(); this.nav('parcelles'); },
+      goServices: (e) => { if(e) e.preventDefault(); this.nav('services'); },
+      goApropos: (e) => { if(e) e.preventDefault(); this.nav('apropos'); },
+      goContact: (e) => { if(e) e.preventDefault(); this.nav('contact'); },
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      openFiche: (ref) => this.openFiche(ref),
+      closeFiche: () => this.closeFiche(),
+      stopProp: (e) => e.stopPropagation(),
+      applySearch: () => this.applySearch(),
+      resetFilters: () => this.resetFilters(),
+      submitContact: (e) => this.submitContact(e),
+
+      updateSearchQuartier: (e) => this.setState({ searchQuartier: e.target.value }),
+      updateSearchPrix: (e) => this.setState({ searchPrixMax: e.target.value }),
+      updateSearchSuperficie: (e) => this.setState({ searchSuperficieMin: e.target.value }),
+      updateFilterQuartier: (e) => this.setState({ filterQuartier: e.target.value }),
+      updateFilterPrixMin: (e) => this.setState({ filterPrixMin: e.target.value }),
+      updateFilterPrixMax: (e) => this.setState({ filterPrixMax: e.target.value }),
+      updateFilterSuperficie: (e) => this.setState({ filterSuperficieMin: e.target.value }),
+      setTypeAll: () => this.setState({ filterType: 'all' }),
+      setTypeParcelle: () => this.setState({ filterType: 'parcelle' }),
+      setTypeMaison: () => this.setState({ filterType: 'maison' }),
+      setTypeAppart: () => this.setState({ filterType: 'appartement' }),
+      setTypeLocal: () => this.setState({ filterType: 'local commercial' }),
+      updateContactNom: (e) => this.setState({ contactNom: e.target.value }),
+      updateContactTel: (e) => this.setState({ contactTel: e.target.value }),
+      updateContactMsg: (e) => this.setState({ contactMsg: e.target.value }),
+    };
+  }
+}
+</script>
+</body>
+</html>
