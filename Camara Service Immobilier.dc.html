@@ -1000,6 +1000,7 @@ class Component extends DCLogic {
         description: "Deux parcelles collées à Wourouni, Siguiri. Chaque parcelle est vendue à 90 000 000 GNF, soit 180 000 000 GNF pour l'ensemble. Vente possible à l'unité ou groupée selon votre projet. Plan disponible.",
         documents: ['Plan'],
         photo: 'uploads/csi-008_photo-01.jpg',
+        prixUnite: 'parcelle',
         vedette: true,
       },
     ];
@@ -1082,7 +1083,8 @@ class Component extends DCLogic {
 
   formatPrix(p) {
     if (p.prix == null) return '[À COMPLÉTER]';
-    return p.prix.toLocaleString('fr-FR').replace(/\u202f/g, ' ').replace(/,/g, ' ') + ' ' + (p.devise || 'GNF');
+    const base = p.prix.toLocaleString('fr-FR').replace(/\u202f/g, ' ').replace(/,/g, ' ') + ' ' + (p.devise || 'GNF');
+    return p.prixUnite ? base + ' / ' + p.prixUnite : base;
   }
 
   formatSup(p) {
