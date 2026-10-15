@@ -826,13 +826,16 @@
         <span class="demo-badge" style="top:20px;left:20px">Aperçu démo</span>
       </sc-if>
     </div>
-    <!-- Thumbs row -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:2px 0;background:var(--paper-2)">
-      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Photo</div>
-      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Photo</div>
-      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Photo</div>
-      <div style="aspect-ratio:1;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-30);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase">+ photos</div>
-    </div>
+    <!-- Thumbs row (gallery) -->
+    <sc-if value="{{ ficheHasMultiplePhotos }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:2px 0;background:var(--paper-2)">
+        <sc-for list="{{ fichePhotos }}" as="ph" hint-placeholder-count="4">
+          <div style="aspect-ratio:1;background:#fff;overflow:hidden">
+            <img src="{{ ph }}" alt="Photo du bien" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
 
     <div style="padding:36px 28px 100px">
       <div style="font-size:11px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-700);margin-bottom:10px">{{ ficheType }} · Réf. {{ ficheRef }}</div>
@@ -986,6 +989,12 @@ class Component extends DCLogic {
         description: "Ensemble immobilier à Kourouni, Siguiri, près des immeubles chinois. Il comprend 2 bâtiments de 3 chambres chacun avec douche interne, 1 chambre-salon avec douche interne, et 2 chambres-salons avec douches. Quartier habité à 90 pour cent et entièrement électrifié. Documents en règle, prêt à occuper.",
         documents: ['Titre foncier', 'Plan'],
         photo: 'uploads/csi-007_facade.jpg',
+        photos: [
+          'uploads/csi-007_facade.jpg',
+          'uploads/csi-007_exterieur.jpg',
+          'uploads/csi-007_interieur-01.jpg',
+          'uploads/csi-007_interieur-02.jpg'
+        ],
         vedette: true,
       },
       {
@@ -1238,6 +1247,8 @@ class Component extends DCLogic {
       ficheIsPlaceholder: ficheBien ? !!ficheBien.isPlaceholder : false,
       ficheHasPhoto: ficheBien ? !!ficheBien.photo : false,
       fichePhoto: ficheBien && ficheBien.photo ? ficheBien.photo : '',
+      fichePhotos: ficheBien && ficheBien.photos && ficheBien.photos.length ? ficheBien.photos : [],
+      ficheHasMultiplePhotos: !!(ficheBien && ficheBien.photos && ficheBien.photos.length > 1),
       ficheHasSlot: ficheBien ? (!ficheBien.isPlaceholder && !ficheBien.photo) : false,
       ficheSlotId: ficheBien ? 'fiche-' + ficheBien.ref : '',
       waUrlFiche: ficheBien ? this.waBien(ficheBien) : '#',
